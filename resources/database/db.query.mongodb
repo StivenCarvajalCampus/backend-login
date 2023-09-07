@@ -1,15 +1,29 @@
-const mongoose = require("mongoose");
-
-const connection  = async()=>{
-     try {
-        await mongoose.connect(`mongodb+srv://${process.env.ATLAS_USER}:${procces.env.ATLAS_PASSWORD}@cluster0.bzjkog5.mongodb.net/${procces.env.ATLAS_DB}`);
-        console.log("Conectado correctamente, Bienvenido");
-     
-    } catch (error) {
-        console.log(error);
-        throw new Error("No te has podido conectar a la base de datos!!");
-     }
-}
-module.exports = {
-    connection
-}
+use("loginreact")
+db.createCollection('usuario',{
+    validator:{
+        $jsonSchema:{
+            bsonType: "int",
+            required:["id","usuario","password","permisos"],
+            properties:{
+                id:{
+                    bsonType:"int",
+                    description:"el campo id debe ser tipo int",
+                    minimum:1
+                },
+                usuario:{
+                    bsonType:"string",
+                    description:"el campo usuario debe ser string",
+                },
+                password:{
+                    bsonType:"string",
+                    description:"El campo password debe ser string",
+                    
+                },
+                permisos:{
+                    bsonType:"string",
+                    description:"El campo permisos debe ser string",
+                }
+            }
+        }
+    }
+})
