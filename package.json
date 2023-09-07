@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "nodemon ./src/app.js --quiet",
     "tsc": "tsc -w"
-
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,15 @@
+const mongoose = require("mongoose");
+
+const connection  = async()=>{
+     try {
+        await mongoose.connect(`mongodb+srv://${process.env.ATLAS_USER}:${procces.env.ATLAS_PASSWORD}@cluster0.bzjkog5.mongodb.net/${procces.env.ATLAS_DB}`);
+        console.log("Conectado correctamente, Bienvenido");
+     
+    } catch (error) {
+        console.log(error);
+        throw new Error("No te has podido conectar a la base de datos!!");
+     }
+}
+module.exports = {
+    connection
+}
