@@ -2,13 +2,12 @@ use("loginreact")
 db.createCollection('usuario',{
     validator:{
         $jsonSchema:{
-            bsonType: "int",
+            bsonType: "object",
             required:["id","usuario","password","permisos"],
             properties:{
                 id:{
                     bsonType:"int",
                     description:"el campo id debe ser tipo int",
-                    minimum:1
                 },
                 usuario:{
                     bsonType:"string",
@@ -26,4 +25,21 @@ db.createCollection('usuario',{
             }
         }
     }
+})
+
+
+use("loginreact")
+db.usuario.insertOne({
+    id:1,
+    usuario:"stivencarvajal",
+    password:"12345",
+    permisos:"GET"
+
+})
+db.usuario.insertOne({
+    id:2,
+    usuario:"brayamcarvajal",
+    password:"123",
+    permisos:"POST"
+    
 })

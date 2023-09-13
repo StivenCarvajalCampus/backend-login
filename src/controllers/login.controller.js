@@ -1,12 +1,14 @@
 import dotenv from "dotenv";
-import { conexion } from "../config/atlas";
-import generateToken from "../libs/generateToken";
+import { conexion } from "../config/atlas.js";
+import generateToken from "../libs/generateToken.js";
 dotenv.config("../../../")
 
 const validateUser = async (user)=>{
     let db = await conexion();
-    let coleccion = db.collection("usuario");
-    let result = await coleccion.findOne({usuario:user.usuario, password:user.password})
+    console.log(db);
+    //revisar conexion 
+    let collection = db.collection("usuario");
+    let result = await collection.findOne({usuario:user.usuario, password:user.password})
     if(!result) return false
 
     let token = await generateToken(result.permisos)
@@ -24,7 +26,7 @@ const login = async(req,res)=>{
         }
 
     }catch(error){
-        res.status(200).send({message:e.message})
+        res.status(200).send({message:error.message})
 
     }
 }
